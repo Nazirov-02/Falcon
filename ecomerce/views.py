@@ -1,11 +1,16 @@
 from django.shortcuts import render
+from .models import Product
+
+
 
 # Create your views here.
 def product_list(request):
-    return render(request,'ecomerce/product-list.html')
+    products = Product.objects.prefetch_related('images').all()
+    return render(request,'ecomerce/product-list.html',{'products': products})
 
-def product_detail(request):
-    return render(request,'ecomerce/product-details.html')
+def product_detail(request,pk):
+    products = Product.objects.prefetch_related('images').get(id=pk)
+    return render(request,'ecomerce/product-details.html',{'products':products})
 
 def customers(request):
     return render(request,'ecomerce/customers.html')
