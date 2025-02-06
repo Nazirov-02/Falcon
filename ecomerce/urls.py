@@ -1,10 +1,10 @@
 
 from django.urls import path
-from ecomerce import views
+from ecomerce.views import product_detail,product_list,comment
+
 
 urlpatterns = [
-path('', views.product_list, name='product_list'),
-path('detail/<int:pk>/',views.product_detail, name='product_detail'),
-path('customers/',views.customers, name='customers'),
-path('customer_detail/',views.customer_detail, name='customer_detail'),
+path('',product_list, name='product_list'),
+path('detail/<int:pk>/',product_detail, name='product_detail'),
+path('comment/<int:pk>',comment, name='comment-detail'),
 ]

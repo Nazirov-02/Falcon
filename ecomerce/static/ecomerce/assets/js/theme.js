@@ -1,3 +1,18 @@
+
+document.addEventListener('DOMContentLoaded', function() {
+  const rater = window.raterJs({
+    element: document.querySelector('#rating-widget'),
+    starSize: 32,
+    step: 1,
+    rateCallback: function(rate, done) {
+      document.getElementById('rating-value').value = rate; // Hidden inputni yangilash
+      done();
+    }
+  });
+});
+
+
+
 "use strict";
 
 var _excluded = ["endValue"];
@@ -564,7 +579,7 @@ var BulkSelect = /*#__PURE__*/function () {
 }();
 
 function bulkSelectInit() {
-  var bulkSelects = document.querySelectorAll('[data-bulk-select');
+  var bulkSelects = document.querySelectorAll('[data-bulk-select]');
 
   if (bulkSelects.length) {
     bulkSelects.forEach(function (el) {

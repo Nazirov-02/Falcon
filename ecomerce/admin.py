@@ -1,7 +1,10 @@
+from itertools import count
+
 from django.utils.html import format_html
 from django.contrib import admin
 # Register your models here.
-from .models import Category, Product, Img
+from ecomerce.models import Category, Product, Img, Product_attribute, Attribute_value, Comment
+from customers.models import Customers
 
 admin.site.site_header = 'apelsin administration'
 admin.site.site_title = 'Manage products'
@@ -11,9 +14,10 @@ admin.site.index_title = 'apelsin shop admin'
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title',)
+    readonly_fields = ('title',)
 
 
-class ProductImageInline(admin.TabularInline):  # yoki admin.StackedInline
+class ProductImageInline(admin.TabularInline):
     model = Img
 
 
@@ -25,13 +29,18 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 
 
+@admin.register(Product_attribute)
+class AttributeAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 
+@admin.register(Attribute_value)
+class AttributeValueAdmin(admin.ModelAdmin):
+    list_display = ('product','attribute','value')
 
-@admin.register(Img)
-class ImgAdmin(admin.ModelAdmin):
-    list_display = ('product', 'image_preview')
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('name','email','rating','product')
 
-    def image_preview(self, obj):
-        if obj.image:
-            return format_html('<img src="{}" style="height: 100px;" />', obj.image.url)
-        return "No image"
+@admin.register(Customers)
+class CustomersAdmin(admin.ModelAdmin):
+     list_display = ('name','email','phone','address')

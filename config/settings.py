@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ecomerce.apps.EcomerceConfig',
+    'phonenumber_field',
+    'customers.apps.CustomersConfig',
 
 ]
 

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add customer</title>
+    <style>
+        .header{
+            max-width:1000px;
+            margin: auto;
+            border-radius: 10px;
+            background-color: chartreuse;
+            color: #6f42c1;
+            margin-top: 100px;
+        }
+        .form{
+            background-color: chartreuse;
+            border-radius: 10px;
+        }
+        .text{
+            text-align: center;
+            vertical-align: bottom;
+        }
+        body {
+            background-color: #ffc107;
+        }
+        .button{
+            padding:15px 30px;
+            margin-left: 400px;
+            background-color: seagreen;
+            border-radius: 5px;
+        }
+        .button1{
+            padding:15px 30px;
+            margin-left: 15px;
+            background-color: seagreen;
+            border-radius: 5px;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1 class="text">Add customer</h1>
+    <hr>
+   <form class="form" method="post" enctype="multipart/form-data" action="{% url 'add_customer' %}">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit" class="button">Add</button>
+    <a href="{% url 'customers' %}" class="button1">Cancel</a>
+</form>
+</div>
+</body>
+</html>
