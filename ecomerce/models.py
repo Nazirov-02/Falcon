@@ -36,7 +36,6 @@ class Product(models.Model):
 
     @property
     def rating_avg(self):
-        # Agar comment bo'lmasa, 0 qaytaradi
         average_rating = self.comments.aggregate(models.Avg('rating'))['rating__avg']
         if average_rating:
             return round(average_rating)

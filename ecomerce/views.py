@@ -4,7 +4,7 @@ from django.db.models import Avg
 from django.shortcuts import render, redirect
 from pyexpat.errors import messages
 from .models import Comment
-
+from django.db.models import Q
 
 from .models import Product
 from .forms import CommentForm
@@ -53,3 +53,13 @@ def comment(request,pk):
     }
     return render(request, 'ecomerce/product-details.html', context)
 
+def search(request):
+    search = request.GET.get('q','')
+    if search:
+        products = Product.objects.filter(Q(category__title__icontains=search) | Q(name__icontains=search) ).all()
+    else:
+        products = Product.objects.all()
+    context = {
+        'products': products,
+    }
+    return render(request, 'ecomerce/product-list.html', context)
