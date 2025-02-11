@@ -14,7 +14,7 @@ admin.site.index_title = 'apelsin shop admin'
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('title',)
-    readonly_fields = ('title',)
+
 
 
 class ProductImageInline(admin.TabularInline):

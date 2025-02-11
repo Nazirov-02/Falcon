@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'ecomerce.apps.EcomerceConfig',
     'phonenumber_field',
     'customers.apps.CustomersConfig',
+    'accounts.apps.AccountsConfig',
+
 
 ]
 
@@ -80,10 +82,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'online_shop',  # PostgreSQLda yaratilgan bazaning nomi
+        'USER': 'postgres',      # Foydalanuvchi nomi
+        'PASSWORD': 'KA1275147',  # Foydalanuvchi paroli
+        'HOST': 'localhost',   # Yoki serveringiz IP-manzili
+        'PORT': '5432',        # PostgreSQL standart porti
     }
 }
+
 
 
 # Password validation
@@ -132,3 +139,4 @@ import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+AUTH_USER_MODEL = 'accounts.User'
