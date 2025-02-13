@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import redirect, render
 
-from accounts.forms import LoginForm
+from accounts.forms import LoginForm, RegisterForm
 
 
 def login_page(request):
@@ -29,3 +29,20 @@ def login_page(request):
 def logout_view(request):
     logout(request)
     return redirect('product_list')
+
+def register_view(request):
+        if request.method == "POST":
+            form = RegisterForm(request.POST)
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.set_password(user.password)
+                user.save()
+                login(request, user)
+                return redirect('product_list')
+
+        else:
+            form = RegisterForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'accounts/register.html', context)

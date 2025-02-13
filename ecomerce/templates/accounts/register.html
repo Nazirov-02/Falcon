@@ -90,11 +90,22 @@
                       </div>
                       <div class="col-auto fs--1 text-600"><span class="mb-0 fw-semi-bold">Already User?</span> <span><a href="../../../pages/authentication/split/login.html">Login</a></span></div>
                     </div>
-                    <form method="post">
+                    {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {% for field, errors in form.errors.items %}
+                                        {% for error in errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                    {% endif %}
+                    <form method="post" action="{% url 'register' %}">
                         {% csrf_token %}
                       <div class="mb-3">
                         <label class="form-label" for="split-name">Name</label>
-                        <input class="form-control" type="text" autocomplete="on" id="split-name" />
+                        <input class="form-control" name="username" type="text" autocomplete="on" id="split-name" />
                       </div>
                       <div class="mb-3">
                         <label class="form-label" for="split-email">Email address</label>
@@ -107,7 +118,7 @@
                         </div>
                         <div class="mb-3 col-sm-6">
                           <label class="form-label" for="split-confirm-password">Confirm Password</label>
-                          <input class="form-control" type="password" autocomplete="on" id="split-confirm-password" />
+                          <input class="form-control" type="password" name = 'confirm_password' autocomplete="on" id="split-confirm-password" />
                         </div>
                       </div>
                       <div class="form-check">

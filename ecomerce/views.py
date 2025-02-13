@@ -1,5 +1,6 @@
 from itertools import product
 
+from django.core.paginator import Paginator
 from django.db.models import Avg
 from django.shortcuts import render, redirect
 from pyexpat.errors import messages
@@ -14,7 +15,10 @@ from .forms import CommentForm
 # Create your views here.
 def product_list(request):
     products = Product.objects.prefetch_related('images').all()
-    return render(request,'ecomerce/product-list.html',{'products': products})
+    paginator = Paginator(products, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'ecomerce/product-list.html',{'page_obj': page_obj})
 
 def product_detail(request,pk):
     products = Product.objects.prefetch_related('images').get(id=pk)
@@ -59,6 +63,7 @@ def search(request):
         products = Product.objects.filter(Q(category__title__icontains=search) | Q(name__icontains=search) ).all()
     else:
         products = Product.objects.all()
+
     context = {
         'products': products,
     }
