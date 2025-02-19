@@ -1,7 +1,10 @@
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import FormView
 
 from accounts.forms import LoginForm, RegisterForm
 
@@ -46,3 +49,17 @@ def register_view(request):
             'form': form
         }
         return render(request, 'accounts/register.html', context)
+
+class RegisterView(FormView):
+    template_name = 'accounts/register.html'
+    form_class = RegisterForm
+    success_url = reverse_lazy('product_list')
+
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.set_password(user.password)
+        user.save()
+        email = form.cleaned_data['email']
+        send_mail(email,'Succesfully Registered','diyorbekramonovich02s@gmail.com',[email],fail_silently=False)
+        login(self.request, user)
+        return redirect(self.success_url)

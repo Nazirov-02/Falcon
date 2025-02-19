@@ -1,0 +1,6 @@
+SECRET_KEY=django-insecure-%6*yanxr2h*&$(1j_g6*0il811+@*(aw@k#$a#1lpni-980b0f
+DATABASE_NAME=online_shop
+DATABASE_USER=postgres
+DATABASE_PASSWORD=KA1275147
+DATABASE_HOST=localhost
+DATABASE_PORT=5432
