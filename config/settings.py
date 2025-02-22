@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'phonenumber_field',
     'customers.apps.CustomersConfig',
     'accounts.apps.AccountsConfig',
+    'social_django',
+
 
 
 ]
@@ -153,3 +155,15 @@ EMAIL_HOST_USER = 'diyorbekramonovich02s@gmail.com'
 EMAIL_HOST_PASSWORD = 'ffzaxmudtpznooxs'
 
 from django.core.mail import send_mail
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.twitter.TwitterOAuth',
+)
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '398950129081-1n0hd0ltt6v5hgv35te054tkc9tpk4oc.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+LOGIN_REDIRECT_URL = 'product_list'
+SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
