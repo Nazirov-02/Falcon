@@ -1,12 +1,1 @@
 SECRET_KEY=django-insecure-%6*yanxr2h*&$(1j_g6*0il811+@*(aw@k#$a#1lpni-980b0f
-DATABASE_NAME=online_shop
-DATABASE_USER=postgres
-DATABASE_PASSWORD=KA1275147
-DATABASE_HOST=localhost
-DATABASE_PORT=5432
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 398950129081-1n0hd0ltt6v5hgv35te054tkc9tpk4oc.apps.googleusercontent.com
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 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
-EMAIL_PORT = 587
-EMAIL_HOST_PASSWORD = ffzaxmudtpznooxs
-SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = http://127.0.0.1:8020/auth/complete/google-oauth2/
