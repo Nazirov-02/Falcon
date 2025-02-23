@@ -44,9 +44,8 @@ INSTALLED_APPS = [
     'ecomerce.apps.EcomerceConfig',
     'phonenumber_field',
     'customers.apps.CustomersConfig',
-    'accounts.apps.AccountsConfig',
     'social_django',
-
+    'accounts.apps.AccountsConfig',
 
 
 ]
@@ -74,7 +73,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ],
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',            ],
         },
     },
 ]
@@ -148,22 +148,25 @@ AUTH_USER_MODEL = 'accounts.User'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Gmail uchun
-EMAIL_PORT = 587
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'diyorbekramonovich02s@gmail.com'
-EMAIL_HOST_PASSWORD = 'ffzaxmudtpznooxs'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 from django.core.mail import send_mail
+
+
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
-    'social_core.backends.twitter.TwitterOAuth',
 )
 
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '398950129081-1n0hd0ltt6v5hgv35te054tkc9tpk4oc.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 LOGIN_REDIRECT_URL = 'product_list'
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = 'http://127.0.0.1:8020/auth/complete/google-oauth2/'

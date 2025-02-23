@@ -24,6 +24,7 @@
         }
         img {
             margin-bottom: 20px;
+            max-width: 300px;
         }
         button {
             padding: 10px 20px;
@@ -42,8 +43,12 @@
 <body>
     <div class="container">
         <h1>QR Code</h1>
-        <img src="{{ qrcode_img }}" alt="QR Code">
-        <a href = "{% url 'product_list' %}"><button>Orqaga</button></a>
+        <div class="qr-code">
+            <img src="{{ qrcode_img }}" alt="QR Code">
+        </div>
+        <a href="{% url 'product_list' %}">
+            <button>Orqaga</button>
+        </a>
     </div>
 </body>
 </html>

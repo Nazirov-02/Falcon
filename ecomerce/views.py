@@ -9,7 +9,7 @@ from django.db.models import Q
 
 from .models import Product
 from .forms import CommentForm
-import qrcode
+
 
 
 # Create your views here.
@@ -70,10 +70,11 @@ def search(request):
     return render(request, 'ecomerce/product-list.html', context)
 
 
+
 import qrcode
 import base64
 from io import BytesIO
-from django.shortcuts import render
+
 
 def qr_code_view(request):
 

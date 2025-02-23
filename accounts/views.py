@@ -18,7 +18,7 @@ def login_page(request):
             password = form.cleaned_data['password']
             user = authenticate(request, username=email, password=password)
             if user:
-                login(request, user)
+                login(request, user, backend='django.contrib.auth.backends.ModelBackend')
                 return redirect('product_list')
             else:
                 messages.add_message(request,messages.ERROR,'Email or password is incorrect')
@@ -40,7 +40,6 @@ def register_view(request):
                 user = form.save(commit=False)
                 user.set_password(user.password)
                 user.save()
-                login(request, user)
                 return redirect('product_list')
 
         else:
@@ -60,6 +59,7 @@ class RegisterView(FormView):
         user.set_password(user.password)
         user.save()
         email = form.cleaned_data['email']
-        send_mail(email,'Succesfully Registered','diyorbekramonovich02s@gmail.com',[email],fail_silently=False)
+        send_mail(email,'Succesfully registered','diyorbekramonovich02s@gmail.com',[email],fail_silently=False)
+        user.backend = 'social_core.backends.google.GoogleOAuth2'
         login(self.request, user)
         return redirect(self.success_url)
