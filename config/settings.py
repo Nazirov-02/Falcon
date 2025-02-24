@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'customers.apps.CustomersConfig',
     'social_django',
     'accounts.apps.AccountsConfig',
+    'registration',
 
 
 ]
@@ -144,7 +145,7 @@ import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-AUTH_USER_MODEL = 'accounts.User'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -169,3 +170,5 @@ LOGIN_REDIRECT_URL = 'product_list'
 SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_REDIRECT_URI')
+
+AUTH_USER_MODEL = 'registration.User'
