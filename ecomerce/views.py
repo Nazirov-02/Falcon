@@ -78,7 +78,7 @@ from io import BytesIO
 
 def qr_code_view(request):
 
-    data = "https://github.com/Nazirov-02"
+    data = "https://github.com/Nazirov-02/ecommerce"
 
 
     qr = qrcode.QRCode(
